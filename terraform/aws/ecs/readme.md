@@ -20,10 +20,8 @@ Amazon Elastic Container Serviceはフルマネージドなコンテナオーケ
 
 
 ## タスクとサービス
-- タスク(スタンドアロンタスク)
-　　一度コンテナを立ち上げて実行した後、コンテナを停止する
-- サービス
-　　任意の数のコンテナ(タスク)を実行し続ける
+- タスク(スタンドアロンタスク) : 一度コンテナを立ち上げて実行した後、コンテナを停止する
+- サービス : 任意の数のコンテナ(タスク)を実行し続ける
 
 ### タスク(スタンドアロンタスク)
 #### 作成すべきリソース
@@ -53,17 +51,14 @@ Amazon Elastic Container Serviceはフルマネージドなコンテナオーケ
 
 
 ## コマンド
-### イメージの作成
+- イメージの作成
 '''docker image build -t image:tag .'''
 
-
-## コンテナイメージのタグ付け
+- コンテナイメージのタグ付け
 '''docker image tag image:tag 123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/image:tag'''
 
-
-## ECRへのログイン
+- ECRへのログイン
 '''aws ecr --region ap-northeast-1 get-login-password | dokcer login --username AWS --password-stdin https://123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/image'''
 
-
-### ECRへイメージを登録する
+- ECRへイメージを登録する
 '''docker image push 123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/image:tag'''
