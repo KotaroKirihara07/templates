@@ -51,14 +51,14 @@ Amazon Elastic Container Serviceはフルマネージドなコンテナオーケ
 
 
 ## コマンド
-- イメージの作成
-'''docker image build -t image:tag .'''
+- イメージの作成  
+<code>docker image build -t image:tag . </code>
 
-- コンテナイメージのタグ付け
-'''docker image tag image:tag 123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/image:tag'''
+- コンテナイメージのタグ付け  
+<code>docker image tag image:tag 123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/image:tag </code>
 
-- ECRへのログイン
-'''aws ecr --region ap-northeast-1 get-login-password | dokcer login --username AWS --password-stdin https://123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/image'''
+- ECRへのログイン  
+<code>aws ecr --region ap-northeast-1 get-login-password | dokcer login --username AWS --password-stdin https://123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/image </code>
 
-- ECRへイメージを登録する
-<code>docker image push 123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/image:tag</code>
+- ECRへイメージを登録する  
+<code>docker image push 123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/image:tag </code>
