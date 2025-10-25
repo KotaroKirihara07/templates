@@ -61,4 +61,4 @@ Amazon Elastic Container Serviceはフルマネージドなコンテナオーケ
 '''aws ecr --region ap-northeast-1 get-login-password | dokcer login --username AWS --password-stdin https://123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/image'''
 
 - ECRへイメージを登録する
-'''docker image push 123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/image:tag'''
+<code>docker image push 123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/image:tag</code>
