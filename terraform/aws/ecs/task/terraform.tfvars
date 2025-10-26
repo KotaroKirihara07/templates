@@ -6,6 +6,7 @@
 
 
 
+
 #container definitions
 requires_compatibilities = "FARGATE"
 network_mode = "awsvpc"
@@ -14,8 +15,8 @@ container_definitions =
     {
       name      = "first"
       image     = "service-first"
-      cpu       = 10
-      memory    = 512
+      cpu       = 1
+      memory    = 2
       essential = true
     }
   ]
