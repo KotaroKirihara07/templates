@@ -18,6 +18,12 @@ Amazon Elastic Container Serviceはフルマネージドなコンテナオーケ
 ### データプレーン
 コンテナが実際に稼働するリソース環境。Amazon ECSではAmazon EC2かAWS Fargateのいずれかを選択することができる。
 
+### タスクロール  
+タスク実行して起動したコンテナたちがAWSリソースにアクセスするための権限をまとめたロール。
+
+### タスク実行ロール  
+タスクを実行する際に必要な権限をまとめたロール。
+
 
 ## タスクとサービス
 - タスク(スタンドアロンタスク) : 一度コンテナを立ち上げて実行した後、コンテナを停止する
@@ -52,13 +58,16 @@ Amazon Elastic Container Serviceはフルマネージドなコンテナオーケ
 
 ## コマンド
 - イメージの作成  
-<code>docker image build -t image:tag . </code>
+<code>sudo docker image build -t image:tag . </code>
 
 - コンテナイメージのタグ付け  
-<code>docker image tag image:tag 123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/image:tag </code>
+<code>sudo docker image tag image:tag 123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/image:tag </code>
 
 - ECRへのログイン  
-<code>aws ecr --region ap-northeast-1 get-login-password | dokcer login --username AWS --password-stdin https://123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/image </code>
+<code>aws ecr --region ap-northeast-1 get-login-password | sudo docker login --username AWS --password-stdin https://123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/image </code>
 
 - ECRへイメージを登録する  
-<code>docker image push 123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/image:tag </code>
+<code>sudo docker image push 123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/image:tag </code>
+
+- タスクの実行
+<code>aws ecs run-task --cluster "${CLUSTER_NAME}" --task-definition "${family:revision}" --launch-type "FARGATE" </code>
