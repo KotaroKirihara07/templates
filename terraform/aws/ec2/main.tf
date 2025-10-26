@@ -1,11 +1,12 @@
-#EC2
+#Amazon Elastic Compute Cloud
 resource "aws_instance" "ec2instance" {
-  ami = data.aws_ami.amazonlinux2023.id
+  ami = "ami-01205c30badb279ec"  #Amazon Linux 2023
   instance_type = var.instance_type
   private_ip = var.private_ip
   subnet_id = aws_subnet.public_subnet.id
   associate_public_ip_address = true
   security_groups = [aws_security_group.sg_ec2.id]
+  iam_instance_profile = aws_iam_instance_profile.ec2_excute_role.name
   root_block_device {
     volume_size = var.volume_size
     volume_type = var.volume_type
@@ -28,6 +29,23 @@ resource "aws_security_group" "sg_ec2" {
   }
 }
 
+#egress rule
+resource "aws_vpc_security_group_egress_rule" "egress_rule" {
+  security_group_id = aws_security_group.sg_ec2.id
+  cidr_ipv4   = "0.0.0.0/0"
+  ip_protocol = -1
+  tags = {
+    Name = "${var.prefix}_egress_rule"
+  }
+}
+
+#Amazon Elastic Compute Cloud実行ロール
+resource "aws_iam_instance_profile" "ec2_excute_role" {
+  name = "ec2_excute_role"
+  role = "AmazonSSMManagedInstanceCore"
+}
+
+
 #Ubuntuイメージ
 data "aws_ami" "ubuntu" {
   most_recent = true
@@ -41,6 +59,7 @@ data "aws_ami" "ubuntu" {
   }
   owners = ["099720109477"]
 }
+
 
 #Amazon Linux 2023イメージ
 data "aws_ami" "amazonlinux2023" {
