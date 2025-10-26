@@ -3,6 +3,6 @@ terraform {
         bucket = "s3_bucket_name"
         key = "aaa/backend.tfstate"
         region = "ap-northeast-1"
-        lock_file = true
+        use_lockfile = true
     }
 }
