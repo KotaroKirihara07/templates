@@ -1,6 +1,9 @@
 #VPC
 resource "aws_vpc" "vpc" {
   cidr_block = var.vpc_cidr_block
+  instance_tenancy = "default"
+  enable_dns_support = true
+  enable_dns_hostnames = true
   tags = {
       Name = "${var.prefix}_vpc"
     }
@@ -63,7 +66,7 @@ resource "aws_route_table" "private_subnet_route_table" {
   }
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = "aws_nat_gateway.nat_gateway.id"
+    gateway_id = aws_nat_gateway.nat_gateway.id
   }
   tags = {
     Name = "${var.prefix}_private_subnet_route_table"
