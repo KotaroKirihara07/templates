@@ -22,7 +22,7 @@ resource "aws_instance" "ec2instance" {
 #security_group
 resource "aws_security_group" "sg_ec2" {
   name        = "${var.prefix}_sg_ec2"
-  description = "Allow https inbound traffic and all outbound traffic"
+  description = "Allow all outbound traffic"
   vpc_id      = aws_vpc.vpc.id
   tags = {
     Name = "${var.prefix}_sg_ec2"
