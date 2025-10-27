@@ -1,22 +1,6 @@
-#ECS cluster
+#commons
+prefix = "test"
 
-
-
-#ECS cluster capacity providers
-
-
-
-
-#container definitions
+#ECS task definition
 requires_compatibilities = "FARGATE"
 network_mode = "awsvpc"
-container_definitions = 
-  [
-    {
-      name      = "first"
-      image     = "service-first"
-      cpu       = 1
-      memory    = 2
-      essential = true
-    }
-  ]

@@ -1,17 +1,11 @@
-#ECS cluster
-
-
-
-#ECS cluster capacity providers
-
-
-
-#container definitions
-variable "container_definitions" {
+#commons
+variable "prefix" {
     type = string
-    description = "container definitions"
+    description = "prefix "
+    default = "test"
 }
 
+#ECS task definition
 variable "requires_compatibilities" {
     type = string
     description = "----"
