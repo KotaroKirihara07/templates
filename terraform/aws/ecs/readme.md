@@ -69,5 +69,15 @@ Amazon Elastic Container Serviceはフルマネージドなコンテナオーケ
 - ECRへイメージを登録する  
 <code>sudo docker image push 123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/image:tag </code>
 
-- タスクの実行 (VPCを指定せよ)    
-<code>aws ecs run-task --cluster "${CLUSTER_NAME}" --task-definition "${family:revision}" --launch-type "FARGATE" </code>
+- タスクの実行   
+<code>CLUSTER_NAME="xxxxxxxxxxxxxxxxx"</code>
+<code>SUBNET_ID="subnet-xxxxxxxxxxxxxxxxx"</code>
+<code>TASK_NAME="xxxxxxxxxxxxxxxxx"</code>
+<code>SG_ID="sg-xxxxxxxxxxxxxxxxxx"</code>
+<code>PUBLIC_IP_ASSIGN="ENABLED"</code>
+<code></code>
+<code>aws ecs run-task \ </code>
+<code>--cluster "${CLUSTER_NAME}" \ </code>
+<code>--task-definition "${TASK_DEF_ARN}" \ </code>
+<code>--network-configuration "awsvpcConfiguration={subnets=[${SUBNET_ID}],securityGroups=[${SG_ID}],assignPublicIp=${PUBLIC_IP_ASSIGN}}" \ </code>
+<code>--launch-type FARGATE </code>

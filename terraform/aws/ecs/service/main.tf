@@ -1,3 +1,44 @@
+#ECS task definition
+resource "aws_ecs_task_definition" "ecs_task_definition" {
+  family = "${var.prefix}_ecs_task"
+  network_mode = var.network_mode
+  requires_compatibilities = [var.requires_compatibilities]
+  execution_role_arn = "arn:aws:iam::123456789012:role/AmazonECSTaskExecutionRole"
+  task_role_arn = "arn:aws:iam::123456789012:role/AmazonECSTaskRole"
+  cpu                      = 1024
+  memory                   = 2048
+  container_definitions = jsonencode([
+    {
+      name      = "hello-world"
+      image     = "123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/hello-world:latest"
+      operating_system_family = "LINUX"
+      cpu       = 1024
+      memory    = 2048
+
+      portMappings = [
+        {
+          containerPort = 80
+          hostPort      = 80
+        }
+      ]
+
+      logConfiguration = {
+        logDriver = "awslogs"
+        options = {
+          "awslogs-group" = aws_cloudwatch_log_group.esc_task_log_group.name
+          "awslogs-region" = "ap-northeast-1" 
+          "awslogs-stream-prefix" = "ecs"
+        }
+      }
+    }
+  ])
+
+  tags = {
+    Name = "${var.prefix}_ecs_task_definition"
+  }
+}
+
+
 #ECS cluster
 resource "aws_ecs_cluster" "ecs_cluster" {
   name = "${var.prefix}_ecs_cluster"
@@ -5,61 +46,33 @@ resource "aws_ecs_cluster" "ecs_cluster" {
     name  = "containerInsights"
     value = "enabled"
   }
+
   tags = {
     Name = "${var.prefix}_ecs_cluster"
   }
 }
 
-#ECS cluster capacity providers
-resource "aws_ecs_cluster_capacity_providers" "ecs_cluster_capacity_providers" {
-  cluster_name = aws_ecs_cluster.ecs_cluster.name
 
-  capacity_providers = ["FARGATE"]
+#ECS service
+resource "aws_ecs_service" "this" {
+  name                              = "${var.prefix}_service"
+  cluster                           = aws_ecs_cluster.ecs_cluster.id
+  task_definition                   = aws_ecs_task_definition.ecs_task_definition.arn
+  desired_count                     = 2
+  launch_type                       = "FARGATE"
 
-  default_capacity_provider_strategy {
-    base = 1
-    weight = 100
-    capacity_provider = "FARGATE"
+  network_configuration {
+    security_groups = ["${var.security_group_id}"]
+    subnets         = ["${var.subnet_id}"]
   }
 
   tags = {
-    Name = "${var.prefix}_ecs_cluster_capacity_providers"
+    Name = "${var.prefix}_ecs_service"
   }
 }
 
-#ECS task definition
-resource "aws_ecs_task_definition" "ecs_task_definition" {
-  family = "${var.prefix}_ecs_family"
-  requires_compatibilities = [var.requires_compatibilities]
-  network_mode = "awsvpc"
-  cpu = 
-  memory = 
-  task_role_arn = 
-  execution_role_arn = 
-  container_definitions = jsonencode(var.container_definitions)
-}
 
-#ECS service
-resource "aws_ecs_service" "mongo" {
-  name            = "mongodb"
-  cluster         = aws_ecs_cluster_capacity_providers.ecs_cluster_capacity_providers.id
-  task_definition = aws_ecs_task_definition.ecs_task_definition.arn
-  desired_count   = 3
-  iam_role        = aws_iam_role.foo.arn
-
-  ordered_placement_strategy {
-    type  = "binpack"
-    field = "cpu"
-  }
-
-  load_balancer {
-    target_group_arn = aws_lb_target_group.foo.arn
-    container_name   = "mongo"
-    container_port   = 8080
-  }
-
-  placement_constraints {
-    type       = "memberOf"
-    expression = "attribute:ecs.availability-zone in [us-west-2a, us-west-2b]"
-  }
+resource "aws_cloudwatch_log_group" "esc_task_log_group" {
+  name = "/ecs/${var.prefix}_ecs_task"
+  retention_in_days = 7
 }

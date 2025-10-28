@@ -5,13 +5,6 @@
 #ECS cluster capacity providers
 
 
-
-#container definitions
-variable "container_definitions" {
-    type = string
-    description = "container definitions"
-}
-
 variable "requires_compatibilities" {
     type = string
     description = "EC2 or FARGATE"
