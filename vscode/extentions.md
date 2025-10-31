@@ -1,4 +1,4 @@
-#extentions
+# extentions
 ## エクスポート
 #### Windowsの場合  
 <code>code --list-extensions > extensions.txt </code>
