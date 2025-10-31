@@ -3,3 +3,4 @@ templates
 - Python
 - Docker
 - terraform
+- vscode
