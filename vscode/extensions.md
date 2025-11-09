@@ -19,7 +19,7 @@
 | Python | Jupyter | ms-toolsai.jupyter | Jupyter notebook |
 | Python | Ruff | charliermarsh.ruff | Ruff linter and formatter |
 | Java | Extension Pack for Java | vscjava.vscode-java-pack | Java |
-| VSCode | Draw.io Integration | ms-ceintl.vscode-language-pack-ja | VSCodeの日本語化 |
+| VSCode | Japanese Language Pack for Visual Studio Code | ms-ceintl.vscode-language-pack-ja | VSCodeの日本語化 |
 | VSCode | IntelliCode | visualstudioexptteam.vscodeintellicode | コード補完 |
 | VSCode | vscode-icons | vscode-icons-team.vscode-icons | アイコン |
 | Latex | LaTeX Workshop | james-yu.latex-workshop | Latex |
