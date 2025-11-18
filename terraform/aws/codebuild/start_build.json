@@ -1,0 +1,37 @@
+{
+  "projectName": "projectName",
+  "sourceVersion": "sourceVersion",
+  "artifactsOverride": {
+    "type": "type",
+    "location": "location",
+    "path": "path",
+    "namespaceType": "namespaceType",
+    "name": "artifactsOverride-name",
+    "packaging": "packaging"
+  },
+  "buildspecOverride": "buildspecOverride",
+  "cacheOverride": {
+    "location": "cacheOverride-location",
+    "type": "cacheOverride-type"
+  },
+  "certificateOverride": "certificateOverride",
+  "computeTypeOverride": "computeTypeOverride",
+  "environmentTypeOverride": "environmentTypeOverride",
+  "environmentVariablesOverride": {
+    "name": "environmentVariablesOverride-name",
+    "value": "environmentVariablesValue",
+    "type": "environmentVariablesOverride-type"
+  },
+  "gitCloneDepthOverride": "gitCloneDepthOverride",
+  "imageOverride": "imageOverride",
+  "idempotencyToken": "idempotencyToken",
+  "insecureSslOverride": "insecureSslOverride",
+  "privilegedModeOverride": "privilegedModeOverride",
+  "queuedTimeoutInMinutesOverride": "queuedTimeoutInMinutesOverride",
+  "reportBuildStatusOverride": "reportBuildStatusOverride",
+  "timeoutInMinutesOverride": "timeoutInMinutesOverride",
+  "sourceAuthOverride": "sourceAuthOverride",
+  "sourceLocationOverride": "sourceLocationOverride",
+  "serviceRoleOverride": "serviceRoleOverride",
+  "sourceTypeOverride": "sourceTypeOverride"
+}
