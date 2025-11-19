@@ -29,13 +29,12 @@ resource "aws_codebuild_project" "codebuild_project" {
   source {
     type            = "S3"
     location        = "bucket_name/key_name/source.zip"
+    buildspec       = "./buildspec.yml"
   }
 
   artifacts {
     type = "NO_ARTIFACTS"
   }
-
-  buildspec = "./buildspec.yml"
 
   tags = {
     Name = "${var.prefix}_codebuild_project"
