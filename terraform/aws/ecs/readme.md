@@ -57,27 +57,20 @@ Amazon Elastic Container Serviceはフルマネージドなコンテナオーケ
 
 
 ## コマンド
-- イメージの作成  
-<code>sudo docker image build -t image:tag . </code>
+#イメージの作成  
+<code>docker image build -t image:tag . </code>
 
-- コンテナイメージのタグ付け  
-<code>sudo docker image tag image:tag 123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/image:tag </code>
+#コンテナイメージのタグ付け  
+<code>docker image tag image:tag 123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/image:tag </code>
 
-- ECRへのログイン  
-<code>aws ecr --region ap-northeast-1 get-login-password | sudo docker login --username AWS --password-stdin https://123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/image </code>
+#ECRへのログイン  
+<code>aws ecr --region ap-northeast-1 get-login-password | docker login --username AWS --password-stdin https://123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/image </code>
 
-- ECRへイメージを登録する  
-<code>sudo docker image push 123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/image:tag </code>
+#ECRへイメージを登録する  
+<code>docker image push 123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/image:tag </code>
 
-- タスクの実行   
-<code>CLUSTER_NAME="xxxxxxxxxxxxxxxxx"</code>  
-<code>SUBNET_ID="subnet-xxxxxxxxxxxxxxxxx"</code>  
-<code>TASK_NAME="xxxxxxxxxxxxxxxxx"</code>  
-<code>SG_ID="sg-xxxxxxxxxxxxxxxxxx"</code>  
-<code>PUBLIC_IP_ASSIGN="ENABLED"</code>  
-<code></code>  
-<code>aws ecs run-task \ </code>  
-<code>--cluster "${CLUSTER_NAME}" \ </code>  
-<code>--task-definition "${TASK_DEF_ARN}" \ </code>  
-<code>--network-configuration "awsvpcConfiguration={subnets=[${SUBNET_ID}],securityGroups=[${SG_ID}],assignPublicIp=${PUBLIC_IP_ASSIGN}}" \ </code>  
-<code>--launch-type FARGATE </code>  
+#必要なパラメータの調査   
+<code>aws ecs run-task --generate-cli-skeleton</code>
+
+#タスクの実行   
+<code>aws ecs run-task --cli-input-json file://runtask_params.json</code>
