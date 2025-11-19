@@ -1,25 +1,25 @@
 #ECS task definition
 resource "aws_ecs_task_definition" "ecs_task_definition" {
-  family = "${var.prefix}_ecs_task"
-  network_mode = var.network_mode
+  family                   = "${var.prefix}_ecs_task"
+  network_mode             = var.network_mode
   requires_compatibilities = [var.requires_compatibilities]
-  execution_role_arn = "arn:aws:iam::123456789012:role/AmazonECSTaskExecutionRole"
-  task_role_arn = "arn:aws:iam::123456789012:role/AmazonECSTaskRole"
-  cpu                      = 1024
-  memory                   = 2048
+  execution_role_arn       = "arn:aws:iam::123456789012:role/AmazonECSTaskExecutionRole"
+  task_role_arn            = "arn:aws:iam::123456789012:role/AmazonECSTaskRole"
+  cpu                      = 256
+  memory                   = 512
   container_definitions = jsonencode([
     {
-      name      = "hello-world"
-      image     = "123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/hello-world:latest"
+      name                    = "hello-world"
+      image                   = "123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/hello-world:latest"
       operating_system_family = "LINUX"
-      cpu       = 1024
-      memory    = 2048
+      cpu                     = 256
+      memory                  = 512
 
       logConfiguration = {
         logDriver = "awslogs"
         options = {
-          "awslogs-group" = aws_cloudwatch_log_group.esc_task_log_group.name
-          "awslogs-region" = "ap-northeast-1" 
+          "awslogs-group"         = aws_cloudwatch_log_group.esc_task_log_group.name
+          "awslogs-region"        = "ap-northeast-1"
           "awslogs-stream-prefix" = "ecs"
         }
       }
@@ -45,6 +45,6 @@ resource "aws_ecs_cluster" "ecs_cluster" {
 }
 
 resource "aws_cloudwatch_log_group" "esc_task_log_group" {
-  name = "/ecs/${var.prefix}_ecs_task"
+  name              = "${var.prefix}_esc_task_log_group"
   retention_in_days = 7
 }
