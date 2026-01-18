@@ -1,3 +1,0 @@
-ms-python.python
-hediet.vscode-drawio
-ms-ceintl.vscode-language-pack-ja
