@@ -1,6 +1,7 @@
 templates
+- Docker
 - Java
 - Python
-- Docker
-- terraform
-- vscode
+- Snowflake
+- Terraform
+- VSGode
