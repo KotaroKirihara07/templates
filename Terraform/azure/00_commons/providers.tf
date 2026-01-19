@@ -1,4 +1,4 @@
-# Configure the AWS Provider
-provider "azure" {
-    
+# Configure the Azure Provider
+provider "azurerm" {
+  resource_provider_registrations = "none"
 }
