@@ -4,4 +4,4 @@ templates
 - Python
 - Snowflake
 - Terraform
-- VSGode
+- VSCode
