@@ -5,10 +5,7 @@
 ## 作成するリソース
 |リソース|名前|備考|
 |---|---| ---| 
-|||
-|||
-|||
+|Secrets Manager|${var.prefix}_posgres_credential|PostgreSQLの認証情報
 
 
-
-## アーキテクチャ構成図
+##
