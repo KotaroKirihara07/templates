@@ -14,34 +14,67 @@ Amazon Elastic Container Serviceはフルマネージドなコンテナオーケ
 |タスク実行ロール|タスクを実行する際に必要な権限をまとめたロール|
 
 
+## Amazon ECR Public Gallery
+[https://gallery.ecr.aws/](https://gallery.ecr.aws/)
+
+
 ## タスクとサービスの違い
 - タスク(スタンドアロンタスク) : 一度コンテナを立ち上げて実行した後、コンテナを停止する
 - サービス : 任意の数のタスクを実行し続ける
 
 
 ## タスク
-### 作成するリソース
-|リソース|名前|概要|
+### あらかじめ作成しておくべきリソース
+|リソース|名前|備考|
 |---|---| ---| 
-|VPC|vpc|---|
-|パブリックサブネット|???|???|
-|ECSクラスター|???|???|
-|タスク定義|???|???|
+|ロール|AmazonECSTaskRole|タスクロール|
+|ロール|AmazonECSTaskExecutionRole|タスク実行ロール|
+|イメージ|public.ecr.aws/docker/library/hello-world:latest|イメージ|
+
+
+### 作成するリソース
+|リソース|名前|備考|
+|---|---| ---| 
+|VPC|${var.prefix}_vpc|---|
+|パブリックサブネット|${var.prefix}_public_subnet|---|
+|Internet Gateway|${var.prefix}_internet_gateway|---|
+|ルーティングテーブル|${var.prefix}_public_subnet_route_table|---|
+|ECSクラスター|${var.prefix}_ecs_cluster|---|
+|タスク定義|${var.prefix}_ecs_task_definition|hello-worldを実行するタスク|
+|CloudWatch Log group|${var.prefix}_esc_task_log_group|---|
 
 
 ### アーキテクチャ構成図
 
 
+### コマンド
+#### タスクの実行 : `aws ecs run-task --cli-input-json file://runtask_params.json`
+
+
 
 ## サービス
-### 作成するリソース
-|リソース|名前|概要|
+### あらかじめ作成しておくべきリソース
+|リソース|名前|備考|
 |---|---| ---| 
-|VPC|vpc-???|-|
-|パブリックサブネット|???|???|
-|ECSクラスター|???|???|
-|ECSサービス|???|???|
-|タスク定義|???|???|
+|ロール|AmazonECSTaskRole|タスクロール|
+|ロール|AmazonECSTaskExecutionRole|タスク実行ロール|
+|ロール|AmazonECSServiceRole|ECSサービス実行ロール|
+|イメージ|public.ecr.aws/docker/library/httpd:latest|Apache HTTP Server イメージ|
+
+
+### 作成するリソース
+|リソース|名前|備考|
+|---|---| ---| 
+|VPC|${var.prefix}_vpc|---|
+|パブリックサブネット|${var.prefix}_public_subnet|---|
+|Internet Gateway|${var.prefix}_internet_gateway|---|
+|ルーティングテーブル|${var.prefix}_public_subnet_route_table|---|
+|ECSクラスター|${var.prefix}_ecs_cluster|---|
+|ECSサービス|???|---|
+|タスク定義|${var.prefix}_ecs_task_definition|---|
+|CloudWatch Log group|${var.prefix}_esc_task_log_group|---|
+|セキュリティグループ|||
+|ALB|||
 
 
 ### アーキテクチャ構成図
@@ -66,3 +99,5 @@ Amazon Elastic Container Serviceはフルマネージドなコンテナオーケ
 
 #タスクの実行   
 <code>aws ecs run-task --cli-input-json file://runtask_params.json</code>
+
+##

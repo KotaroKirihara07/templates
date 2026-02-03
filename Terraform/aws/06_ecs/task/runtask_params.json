@@ -1,0 +1,126 @@
+{
+    "capacityProviderStrategy": [
+        {
+            "capacityProvider": "",
+            "weight": 0,
+            "base": 0
+        }
+    ],
+    "cluster": "",
+    "count": 0,
+    "enableECSManagedTags": true,
+    "enableExecuteCommand": true,
+    "group": "",
+    "launchType": "MANAGED_INSTANCES",
+    "networkConfiguration": {
+        "awsvpcConfiguration": {
+            "subnets": [
+                ""
+            ],
+            "securityGroups": [
+                ""
+            ],
+            "assignPublicIp": "DISABLED"
+        }
+    },
+    "overrides": {
+        "containerOverrides": [
+            {
+                "name": "",
+                "command": [
+                    ""
+                ],
+                "environment": [
+                    {
+                        "name": "",
+                        "value": ""
+                    }
+                ],
+                "environmentFiles": [
+                    {
+                        "value": "",
+                        "type": "s3"
+                    }
+                ],
+                "cpu": 0,
+                "memory": 0,
+                "memoryReservation": 0,
+                "resourceRequirements": [
+                    {
+                        "value": "",
+                        "type": "GPU"
+                    }
+                ]
+            }
+        ],
+        "cpu": "",
+        "inferenceAcceleratorOverrides": [
+            {
+                "deviceName": "",
+                "deviceType": ""
+            }
+        ],
+        "executionRoleArn": "",
+        "memory": "",
+        "taskRoleArn": "",
+        "ephemeralStorage": {
+            "sizeInGiB": 0
+        }
+    },
+    "placementConstraints": [
+        {
+            "type": "memberOf",
+            "expression": ""
+        }
+    ],
+    "placementStrategy": [
+        {
+            "type": "spread",
+            "field": ""
+        }
+    ],
+    "platformVersion": "",
+    "propagateTags": "SERVICE",
+    "referenceId": "",
+    "startedBy": "",
+    "tags": [
+        {
+            "key": "",
+            "value": ""
+        }
+    ],
+    "taskDefinition": "",
+    "clientToken": "",
+    "volumeConfigurations": [
+        {
+            "name": "",
+            "managedEBSVolume": {
+                "encrypted": true,
+                "kmsKeyId": "",
+                "volumeType": "",
+                "sizeInGiB": 0,
+                "snapshotId": "",
+                "volumeInitializationRate": 0,
+                "iops": 0,
+                "throughput": 0,
+                "tagSpecifications": [
+                    {
+                        "resourceType": "volume",
+                        "tags": [
+                            {
+                                "key": "",
+                                "value": ""
+                            }
+                        ],
+                        "propagateTags": "TASK_DEFINITION"
+                    }
+                ],
+                "roleArn": "",
+                "terminationPolicy": {
+                    "deleteOnTermination": true
+                },
+                "filesystemType": "ntfs"
+            }
+        }
+    ]
+}

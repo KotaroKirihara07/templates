@@ -1,21 +1,26 @@
-#commons
+# ----------------------------
+# prefix
+# ----------------------------
+
 variable "prefix" {
-  type        = string
-  description = "prefix "
-  default     = "test"
+    type = string
+    description = "prefix"
+    default = "test"
 }
 
-#ECS task definition
-variable "requires_compatibilities" {
-  type        = string
-  description = "----"
-  default     = "FARGATE"
-  # { "EC2" | "FARGATE" }
+
+# ----------------------------
+# VPC 
+# ----------------------------
+
+variable "vpc_cidr_block" {
+    type = string
+    description = "vpc cidr block"
+    default = "192.168.0.0/16"
 }
 
-variable "network_mode" {
-  type        = string
-  description = "network_mode {none/bridge/awsvpc/host}"
-  default     = "awsvpc"
-  # { "awsvpc" |}
-}  
+variable "public_subnet_cidr_block" {
+    type = string
+    description = "public subnet cidr block"
+    default = "192.168.10.0/24"
+}

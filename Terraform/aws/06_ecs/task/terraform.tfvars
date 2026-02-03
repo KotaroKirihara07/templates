@@ -1,6 +1,13 @@
-#commons
+# ----------------------------
+# prefix
+# ----------------------------
+
 prefix = "test"
 
-#ECS task definition
-requires_compatibilities = "FARGATE"
-network_mode             = "awsvpc"
+
+# ----------------------------
+# VPC 
+# ----------------------------
+
+vpc_cidr_block = "192.168.0.0/16"
+public_subnet_cidr_block = "192.168.10.0/24"

@@ -1,28 +1,26 @@
-#ECS cluster
+# ----------------------------
+# prefix
+# ----------------------------
 
-
-
-#ECS cluster capacity providers
-
-
-variable "requires_compatibilities" {
+variable "prefix" {
     type = string
-    description = "EC2 or FARGATE"
-    default = "FARGATE"
-}
-
-variable "network_mode" {
-    type = string
-    description = "network_mode none/bridge/awsvpc/host"
-    default = "awsvpc"
+    description = "prefix"
+    default = "test"
 }
 
 
+# ----------------------------
+# VPC 
+# ----------------------------
 
-#ECS service
+variable "vpc_cidr_block" {
+    type = string
+    description = "vpc cidr block"
+    default = "192.168.0.0/16"
+}
 
-
-
-
-
-  
+variable "public_subnet_cidr_block" {
+    type = string
+    description = "public subnet cidr block"
+    default = "192.168.10.0/24"
+} 

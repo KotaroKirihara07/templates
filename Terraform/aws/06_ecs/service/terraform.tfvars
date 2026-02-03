@@ -1,16 +1,13 @@
-#ECS cluster
+## ----------------------------
+# prefix
+# ----------------------------
+
+prefix = "test"
 
 
+# ----------------------------
+# VPC 
+# ----------------------------
 
-#ECS cluster capacity providers
-
-
-
-#container definitions
-requires_compatibilities = "FARGATE"
-network_mode = "awsvpc
-
-
-
-
-#ECS service
+vpc_cidr_block = "192.168.0.0/16"
+public_subnet_cidr_block = "192.168.10.0/24"
