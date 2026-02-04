@@ -47,6 +47,7 @@ Amazon Elastic Container Serviceはフルマネージドなコンテナオーケ
 
 
 ### アーキテクチャ構成図
+![ecs_task](../99_images/06_ecs_task.svg)
 
 
 ### コマンド
