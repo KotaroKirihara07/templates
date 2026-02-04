@@ -39,9 +39,11 @@ Amazon Elastic Container Serviceはフルマネージドなコンテナオーケ
 |パブリックサブネット|${var.prefix}_public_subnet|---|
 |Internet Gateway|${var.prefix}_internet_gateway|---|
 |ルーティングテーブル|${var.prefix}_public_subnet_route_table|---|
+|セキュリティグループ|${var.prefix}_sg_ecs|---|
 |ECSクラスター|${var.prefix}_ecs_cluster|---|
 |タスク定義|${var.prefix}_ecs_task_definition|hello-worldを実行するタスク|
 |CloudWatch Log group|${var.prefix}_esc_task_log_group|---|
+|★|||
 
 
 ### アーキテクチャ構成図

@@ -36,13 +36,6 @@ resource "aws_internet_gateway" "igw" {
 }
 
 
-# Internet Gateway attachment
-resource "aws_internet_gateway_attachment" "igw_attachment" {
-  internet_gateway_id = aws_internet_gateway.igw.id
-  vpc_id              = aws_vpc.vpc.id
-}
-
-
 # public subnet route table
 resource "aws_route_table" "public_subnet_route_table" {
   vpc_id = aws_vpc.vpc.id
@@ -64,6 +57,28 @@ resource "aws_route_table" "public_subnet_route_table" {
 resource "aws_route_table_association" "public_route_table_association" {
   subnet_id      = aws_subnet.public_subnet.id
   route_table_id = aws_route_table.public_subnet_route_table.id
+}
+
+
+# security group
+resource "aws_security_group" "sg_ecs" {
+  name        = "${var.prefix}_sg_ecs"
+  description = "Allow all outbound traffic"
+  vpc_id      = aws_vpc.vpc.id
+  tags = {
+    Name = "${var.prefix}_sg_ecs"
+  }
+}
+
+
+# Egress rule
+resource "aws_vpc_security_group_egress_rule" "egress_rule" {
+  security_group_id = aws_security_group.sg_ecs.id
+  cidr_ipv4         = "0.0.0.0/0"
+  ip_protocol       = -1
+  tags = {
+    Name = "${var.prefix}_egress_rule"
+  }
 }
 
 
