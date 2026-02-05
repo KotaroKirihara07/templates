@@ -1,3 +1,4 @@
+# Lambda関数
 resource "aws_lambda_function" "example" {
   function_name = "example_container_function"
   role          = aws_iam_role.example.arn
