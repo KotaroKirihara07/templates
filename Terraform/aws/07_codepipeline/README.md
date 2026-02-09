@@ -1,8 +1,8 @@
 # Amazon CodePipeline
 AWSが提供する継続的インテグレーション(CI)および継続的デリバリー(CD)サービス。
 
-
-## 作成するファイル
+## Dockerイメージ ビルド パイプライン
+### 作成するファイル
 |ファイル名|説明|
 |---|---| 
 |Dockerfile||
@@ -11,33 +11,79 @@ AWSが提供する継続的インテグレーション(CI)および継続的デ�
 |||
 
 
-## あらかじめ作成しておくリソース
+### あらかじめ作成しておくリソース
 |リソース|名前|備考|
 |---|---| ---| 
-|Amazon S3||
-|Amazon ECR||
+|S3|||
+|ロール|CodeCommit-ExecutionRole|codebuildの実行ロール|
 
 
-## 作成するリソース
+### 作成するリソース
 |リソース|名前|備考|
 |---|---| ---| 
-|AWS CodePipeline||
-|AWS CodeBuild||
-|AWS CodeBuild||
-|AWS CodeDeploy||
+|ECR|${var.prefix}_ecr_repository||
+|CodeCommit|${var.prefix}_codecommit_repository||
+|CodeBuild|${var.prefix}_codebuild_project||
+|CloudWatch Loggroup|${var.prefix}_codebuild_project_log_group||
+|AWS CodePipeline|||
 
 
 
-## アーキテクチャ構成図
+### アーキテクチャ構成図
 
 
 ## コマンド
 
 #ビルドの実行  
-<code>aws codebuild start-build --project-name <project-name></code>  
+`aws codebuild start-build --project-name <project-name>`  
 
 #必要なパラメータの調査  
-<code>aws codebuild start-build --generate-cli-skeleton</code>
+`aws codebuild start-build --generate-cli-skeleton`
 
 #既存のプロジェクトの設定値を上書きしてビルド  
-<code>aws codebuild start-build --cli-input-json file://startbuild_params.json</code>
+`aws codebuild start-build --cli-input-json file://startbuild_params.json`
+
+
+## Lambda関数作成パイプライン
+### 作成するファイル
+|ファイル名|説明|
+|---|---| 
+|Dockerfile||
+|buildspec.yml||
+|||
+|||
+
+
+### あらかじめ作成しておくリソース
+|リソース|名前|備考|
+|---|---| ---| 
+|Amazon S3|||
+
+
+### 作成するリソース
+|リソース|名前|備考|
+|---|---| ---| 
+|Amazon ECR|${var.prefix}_ecr_repository||
+|AWS CodePipeline|||
+|AWS CodeBuild|||
+|AWS CodeBuild|||
+|AWS CodeDeploy|||
+
+
+
+### アーキテクチャ構成図
+
+
+## コマンド
+
+#ビルドの実行  
+`aws codebuild start-build --project-name <project-name>`  
+
+#必要なパラメータの調査  
+`aws codebuild start-build --generate-cli-skeleton`
+
+#既存のプロジェクトの設定値を上書きしてビルド  
+`aws codebuild start-build --cli-input-json file://startbuild_params.json`
+
+
+##
