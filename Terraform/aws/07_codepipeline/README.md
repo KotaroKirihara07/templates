@@ -7,14 +7,12 @@ AWSが提供する継続的インテグレーション(CI)および継続的デ�
 |---|---| 
 |Dockerfile||
 |buildspec.yml||
-|||
-|||
 
 
 ### あらかじめ作成しておくリソース
 |リソース|名前|備考|
 |---|---| ---| 
-|S3|||
+|S3|codepipeline-ap-noratheast-1-012345678912|codepipilineのアーティファクトバケット|
 |ロール|CodeCommit-ExecutionRole|codebuildの実行ロール|
 
 
@@ -25,23 +23,15 @@ AWSが提供する継続的インテグレーション(CI)および継続的デ�
 |CodeCommit|${var.prefix}_codecommit_repository||
 |CodeBuild|${var.prefix}_codebuild_project||
 |CloudWatch Loggroup|${var.prefix}_codebuild_project_log_group||
-|AWS CodePipeline|||
+|CodePipeline|${var.prefix}_codepipeline||
+|サービスロール|AWSCodePipelineServiceRole-ap-northeast-1-${var.prefix}_codepipeline|CodePipelineの実行ロール|
 
 
 
 ### アーキテクチャ構成図
 
 
-## コマンド
-
-#ビルドの実行  
-`aws codebuild start-build --project-name <project-name>`  
-
-#必要なパラメータの調査  
-`aws codebuild start-build --generate-cli-skeleton`
-
-#既存のプロジェクトの設定値を上書きしてビルド  
-`aws codebuild start-build --cli-input-json file://startbuild_params.json`
+##
 
 
 ## Lambda関数作成パイプライン
@@ -50,8 +40,6 @@ AWSが提供する継続的インテグレーション(CI)および継続的デ�
 |---|---| 
 |Dockerfile||
 |buildspec.yml||
-|||
-|||
 
 
 ### あらかじめ作成しておくリソース
