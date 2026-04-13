@@ -41,3 +41,20 @@ variable "retention_in_days" {
     description = "retention in days"
     default = 365
 }
+
+
+# ----------------------------
+# ECS task
+# ----------------------------
+
+variable "task_definition_name" {
+    type = string
+    description = "task definition name"
+    default = "hello-world"
+}
+
+variable "image_name" {
+    type = string
+    description = "image name"
+    default = "public.ecr.aws/docker/library/hello-world:latest"
+}

@@ -27,6 +27,17 @@ variable "region" {
 
 
 # ----------------------------
+# CloudWatch
+# ----------------------------
+
+variable "log_group_name" {
+    type = string
+    description = "log group name"
+    default = "esc_task_log_group"
+}
+
+
+# ----------------------------
 # ECS task
 # ----------------------------
 
@@ -40,15 +51,4 @@ variable "image_name" {
     type = string
     description = "image name"
     default = "public.ecr.aws/docker/library/hello-world:latest"
-}
-
-
-# ----------------------------
-# CloudWatch
-# ----------------------------
-
-variable "log_group_name" {
-    type = string
-    description = "log group name"
-    default = "esc_task_log_group"
 }

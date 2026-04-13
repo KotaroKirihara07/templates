@@ -11,3 +11,17 @@ prefix = "test"
 
 vpc_cidr_block = "192.168.0.0/16"
 public_subnet_cidr_block = "192.168.10.0/24"
+
+
+# ----------------------------
+# CloudWatch
+# ----------------------------
+
+retention_in_days = 365
+
+
+# ----------------------------
+# ECS task
+# ----------------------------
+task_definition_name = "hello-world"
+image_name = "public.ecr.aws/docker/library/hello-world:latest"
